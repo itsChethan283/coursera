@@ -3,7 +3,7 @@ class partyanimal():
 
  def __init__(self):
   print("iam constructed")
- print("nothing")
+
  def party(self):
   self.x = self.x + 1
   print("So far", self.x)
@@ -15,6 +15,9 @@ an = partyanimal()
 
 an.party()
 an.party()
+an.party()
+an.party()
+
 
 an = 42
 
