@@ -1,7 +1,7 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 
-serviceurl = 'http://maos.googleapis.com/maps/api/geocode/json?'
+serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 while True:
     address = input('Enter location: ')
@@ -23,8 +23,8 @@ while True:
         print('=====Fail=====')
         print(data)
         continue
-        lat = js["results"]["geometry"]["location"]["lat"]
-        lng = js["results"]["geometry"]["location"]["lng"]
-        print('lat', lat, 'lng', lng)
-        location = js['results']['formatted_address']
-        print(location)
+    lat = js["results"]["geometry"]["location"]["lat"]
+    lng = js["results"]["geometry"]["location"]["lng"]
+    print('lat', lat, 'lng', lng)
+    location = js['results']['formatted_address']
+    print(location)
