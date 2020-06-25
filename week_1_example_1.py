@@ -9,3 +9,6 @@ an = partyanimal()
 an.party()
 an.party()
 an.party()
+
+print("type", type(an))
+print("dir", dir(an))
