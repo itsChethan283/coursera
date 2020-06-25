@@ -8,10 +8,16 @@ class partyanimal:
     def party(self):
         self.x = self.x + 1
         print(self.name, "party count", self.x)
+class fotballfan(partyanimal):
+    points = 0
+    def touchdown(self):
+        self.points = self.points + 1
+        self.party()
+        print(self.name, "party count", self.points)
 
 s = partyanimal("sally")
 s.party()
 
-j = partyanimal("jim")
+j = fotballfan("jim")
 j.party()
-s.party()
+j.touchdown()
