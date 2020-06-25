@@ -44,3 +44,4 @@ while True:
 
     place = js['results'][0]['place_id']
     print(place)
+    
