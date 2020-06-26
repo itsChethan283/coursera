@@ -15,9 +15,6 @@ an = partyanimal()
 
 an.party()
 an.party()
-an.party()
-an.party()
-
 
 an = 42
 
