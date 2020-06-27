@@ -4,19 +4,21 @@ import sqlite3
 conn = sqlite3.connect('trackdb.sqlite')
 cur = conn.cursor()
 
-cur.execute('''
+cur.executescript('''
 DROP TABLE IF EXISTS Artist;
 DROP TABLE IF EXISTS Album;
 DROP TABLE IF EXISTS Track;
 
 CREATE TABLE Artist(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    name TEXT UNIQUE);
+    name TEXT UNIQUE
+    );
 
 CREATE TABLE Album(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    artist-id INTEGER,
-    title TEXT UNIQUE);
+    artist_id INTEGER,
+    title TEXT UNIQUE
+    );
 
 CREATE TABLE Track(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
@@ -24,7 +26,8 @@ CREATE TABLE Track(
     album_id INTEGER,
     len INTEGER,
     rating INTEGER,
-    count INTEGER);
+    count INTEGER
+    );
 ''')
 
 fname = input('Enter the file name: ')
@@ -33,12 +36,12 @@ if (len(fname) < 1): fname = 'Library.xml'
 def lookup(d, key):
     found = False
     for child in d:
-        if found: return child.txt
-        if child.tag =='key' and child.txt == key:
+        if found: return child.text
+        if child.tag =='key' and child.text == key:
             found = True
     return None
 
-syuff = ET.parse(fname)
+stuff = ET.parse(fname)
 all = stuff.findall('dict/dict/dict')
 print('Dic count: ', len(all))
 for entry in all:
@@ -69,4 +72,4 @@ for entry in all:
         VALUES (?, ?, ?, ?, ?)''',
         (name, album_id, length, rating, count) )
 
-    conn.commit()
+conn.commit()
