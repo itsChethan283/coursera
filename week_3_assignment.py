@@ -6,6 +6,7 @@ cur = conn.cursor()
 
 cur.executescript('''
 DROP TABLE IF EXISTS Artist;
+DROP TABLE IF EXISTS Genre;
 DROP TABLE IF EXISTS Album;
 DROP TABLE IF EXISTS Track;
 
@@ -60,7 +61,7 @@ for entry in all:
     rating = lookup(entry, 'Rating')
     length = lookup(entry, 'Length')
 
-    if name is None or artist is None or album is None: continue
+    if name is None or artist is None or album is None or genre is None: continue
 
     print(name, artist, album, count, rating, length)
 
@@ -73,7 +74,7 @@ for entry in all:
         VALUES (?) ''', (genre,) )
     cur.execute('SELECT id FROM Genre WHERE name = ?', (genre, ))
     genre_id = cur.fetchone()[0]
-    
+
     print(genre_id)
     if genre_id is None:
         print("car")
@@ -89,3 +90,11 @@ for entry in all:
         (name, album_id, genre_id, length, rating, count) )
 
 conn.commit()
+
+sqlstr = 'SELECT Track.title, Artist.name, Album.title, Genre.name FROM Track JOIN Genre JOIN Album JOIN Artist ON Track.genre_id = Genre.ID and Track.album_id = Album.id AND Album.artist_id = Artist.id ORDER BY Artist.name LIMIT 3'
+
+
+for row in cur.execute(sqlstr) :
+    print (str(row[0]),str(row[1]),str(row[2]),str(row[3]))
+
+cur.close()
