@@ -33,7 +33,7 @@ ctx.verify_mode = ssl.CERT_NONE
 fh = open("where.data")
 count = 0
 for line in fh:
-    if count > 20 :
+    if count > 200 :
         print('Retrieved 200 locations, restart to retrieve more')
         break
 
@@ -74,7 +74,7 @@ for line in fh:
     cur.execute('''INSERT INTO Locations (address, geodata)
             VALUES ( ?, ? )''', (memoryview(address.encode()), memoryview(data.encode()) ) )
     conn.commit()
-    if count % 20 == 0 :
+    if count % 10 == 0 :
         print('Pausing for a bit...')
         time.sleep(5)
 
