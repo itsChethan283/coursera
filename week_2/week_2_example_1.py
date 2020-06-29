@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('emaildb123.sqlite')
+conn = sqlite3.connect('emaildb1.sqlite')
 cur = conn.cursor()
 
 cur.execute('''
