@@ -14,6 +14,7 @@ while True:
 
     print("count:", len(js["comments"]))
     sum = 0
+
     for item in js['comments']:
         sum = sum + int(item['count'])
     print("sum:",sum)
