@@ -7,10 +7,10 @@ cur = conn.cursor()
 # in pages in the SCC that have in and out links
 cur.execute('''SELECT DISTINCT from_id FROM Links''')
 from_ids = list()
-for row in cur: 
+for row in cur:
     from_ids.append(row[0])
 
-# Find the ids that receive page rank 
+# Find the ids that receive page rank
 to_ids = list()
 links = list()
 cur.execute('''SELECT DISTINCT from_id, to_id FROM Links''')
@@ -22,6 +22,7 @@ for row in cur:
     if to_id not in from_ids : continue
     links.append(row)
     if to_id not in to_ids : to_ids.append(to_id)
+print(links)
 
 # Get latest page ranks for strongly connected component
 prev_ranks = dict()
@@ -29,13 +30,13 @@ for node in from_ids:
     cur.execute('''SELECT new_rank FROM Pages WHERE id = ?''', (node, ))
     row = cur.fetchone()
     prev_ranks[node] = row[0]
-
+print(prev_ranks)
 sval = input('How many iterations:')
 many = 1
 if ( len(sval) > 0 ) : many = int(sval)
 
 # Sanity check
-if len(prev_ranks) < 1 : 
+if len(prev_ranks) < 1 :
     print("Nothing to page rank.  Check data.")
     quit()
 
@@ -48,7 +49,7 @@ for i in range(many):
         total = total + old_rank
         next_ranks[node] = 0.0
     # print total
-
+    print(next_ranks)
     # Find the number of outbound links and sent the page rank down each
     for (node, old_rank) in list(prev_ranks.items()):
         # print node, old_rank
@@ -62,10 +63,10 @@ for i in range(many):
         if ( len(give_ids) < 1 ) : continue
         amount = old_rank / len(give_ids)
         # print node, old_rank,amount, give_ids
-    
+
         for id in give_ids:
             next_ranks[id] = next_ranks[id] + amount
-    
+
     newtot = 0
     for (node, next_rank) in list(next_ranks.items()):
         newtot = newtot + next_rank
@@ -100,4 +101,3 @@ for (id, new_rank) in list(next_ranks.items()) :
     cur.execute('''UPDATE Pages SET new_rank=? WHERE id=?''', (new_rank, id))
 conn.commit()
 cur.close()
-
