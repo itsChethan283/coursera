@@ -1,4 +1,0 @@
-SELECT Users.name, Member.role, Course.title
-FROM Users JOIN Member JOIN Course
-ON Member.user_id = Users.id AND Member.course_id = Course.id
-ORDER BY Course.title, Member.role DESC, Users.name
