@@ -49,7 +49,7 @@ for i in range(many):
         total = total + old_rank
         next_ranks[node] = 0.0
     # print total
-    print(next_ranks)
+    print(next_ranks )
     # Find the number of outbound links and sent the page rank down each
     for (node, old_rank) in list(prev_ranks.items()):
         # print node, old_rank
@@ -66,7 +66,7 @@ for i in range(many):
 
         for id in give_ids:
             next_ranks[id] = next_ranks[id] + amount
-
+    print(next_ranks)
     newtot = 0
     for (node, next_rank) in list(next_ranks.items()):
         newtot = newtot + next_rank
