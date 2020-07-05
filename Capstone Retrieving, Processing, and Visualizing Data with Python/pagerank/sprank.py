@@ -19,7 +19,7 @@ for row in cur:
     to_id = row[1]
     if from_id == to_id : continue
     if from_id not in from_ids : continue
-    if to_id not in from_ids : continue
+    if to_id not in from_ids : continue1
     links.append(row)
     if to_id not in to_ids : to_ids.append(to_id)
 print(links)
