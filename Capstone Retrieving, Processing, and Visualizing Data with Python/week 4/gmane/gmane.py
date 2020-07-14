@@ -111,6 +111,7 @@ while True:
         # Open with a timeout of 30 seconds
         document = urllib.request.urlopen(url, None, 30, context=ctx)
         text = document.read().decode()
+        print(text)
         if document.getcode() != 200 :
             print("Error code=",document.getcode(), url)
             break
@@ -175,7 +176,9 @@ while True:
 
     subject = None
     z = re.findall('\Subject: (.*)\n', hdr)
+    print(z,'subject__+++++_______')
     if len(z) == 1 : subject = z[0].strip().lower();
+    print(subject)
 
     # Reset the fail counter
     fail = 0
