@@ -130,7 +130,6 @@ while True:
     count = count + 1
 
     if not text.startswith("From "):
-        print(text)
         print("Did not find From ")
         fail = fail + 1
         if fail > 5 : break

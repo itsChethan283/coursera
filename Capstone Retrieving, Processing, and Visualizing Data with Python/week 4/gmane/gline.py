@@ -16,6 +16,7 @@ for message_row in cur :
     messages[message_row[0]] = (message_row[1],message_row[2],message_row[3],message_row[4])
 
 print("Loaded messages=",len(messages),"senders=",len(senders))
+20
 
 sendorgs = dict()
 for (message_id, message) in list(messages.items()):
@@ -40,9 +41,10 @@ for (message_id, message) in list(messages.items()):
     if len(pieces) != 2 : continue
     dns = pieces[1]
     if dns not in orgs : continue
-    month = message[3][:7]
-    if month not in months : months.append(month)
-    key = (month, dns)
+    year = message[3][:4]
+    print(year)
+    if year not in months : months.append(year)
+    key = (year, dns)
     counts[key] = counts.get(key,0) + 1
 
 months.sort()
@@ -50,15 +52,15 @@ months.sort()
 # print months
 
 fhand = open('gline.js','w')
-fhand.write("gline = [ ['Month'")
+fhand.write("gline = [ ['year'")
 for org in orgs:
     fhand.write(",'"+org+"'")
 fhand.write("]")
 
-for month in months:
-    fhand.write(",\n['"+month+"'")
+for year in months:
+    fhand.write(",\n['"+year+"'")
     for org in orgs:
-        key = (month, org)
+        key = (year, org)
         val = counts.get(key,0)
         fhand.write(","+str(val))
     fhand.write("]");
