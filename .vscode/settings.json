@@ -1,0 +1,7 @@
+{
+    "clock.alignment": "Right",
+    "dateTime.showMonth": true,
+    "dateTime.showSeconds": true,
+    "dateTime.showDayOfWeek": true,
+    "dateTime.showDayOfMonth": true
+}
